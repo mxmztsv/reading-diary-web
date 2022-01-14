@@ -1,0 +1,28 @@
+.child-item {
+    width: 100%;
+    padding: 25px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+    border-bottom-color: #acacac;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.child-item:hover {
+    background: lightgray;
+}
+
+.child-item_name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.child-item_id {
+    font-size: 18px;
+    color: grey;
+    margin-left: 15px;
+}
