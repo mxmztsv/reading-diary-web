@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import Button from "@mui/material/Button";
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -11,6 +11,7 @@ import Container from '@mui/material/Container';
 import {getChildById} from "../controllers/ChildPageController";
 import {TasksTable} from "../components/TasksTable";
 import {ActualTasks} from "../components/ActualTasks";
+import {CompletedTasks} from "../components/CompletedTasks";
 
 
 export const ChildPage = () => {
@@ -46,7 +47,9 @@ export const ChildPage = () => {
                     </div>
                     <span className='child-item_id'>{params.id}</span>
                 </div>
-                <Button variant="contained">Отключить от себя</Button>
+                <Button variant="outlined" onClick={() => {
+
+                }}>Отключить от себя</Button>
             </div>
             <TabContext value={tab}>
                     <TabList onChange={handleChange} aria-label="lab API tabs example">
@@ -57,7 +60,9 @@ export const ChildPage = () => {
                 <TabPanel value="1">
                     <ActualTasks id={child.id}/>
                 </TabPanel>
-                <TabPanel value="2">Item Two</TabPanel>
+                <TabPanel value="2">
+                    <CompletedTasks id={child.id}/>
+                </TabPanel>
                 <TabPanel value="3">Item Three</TabPanel>
             </TabContext>
             </Container>
