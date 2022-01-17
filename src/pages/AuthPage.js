@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { Link } from "react-router-dom";
+import {signIn} from "../controllers/AuthController";
 
 
 
@@ -38,7 +39,7 @@ export const AuthPage = () => {
 
                     </div>
                     <Stack direction="row" spacing={2}>
-                        <Button variant="contained">Войти</Button>
+                        <Button variant="contained" onClick={() => signIn(form.login, form.pass)}>Войти</Button>
                         <Link to="/signup"><Button variant="outlined">Зарегистрироваться</Button></Link>
 
                     </Stack>

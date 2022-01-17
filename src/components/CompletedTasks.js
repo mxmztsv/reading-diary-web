@@ -3,13 +3,16 @@ import {generateButtonHandler, getCompletedTasks} from "../controllers/Completed
 import {CompletedTasksTable} from "./CompletedTasksTable";
 import Grid from '@mui/material/Grid';
 import Button from "@mui/material/Button";
+import {useParams} from "react-router-dom";
 
 export const CompletedTasks = ({id}) => {
 
     const [tasks, setTasks] = useState([])
 
-    useEffect(() => {
-        setTasks(getCompletedTasks(id))
+    const params = useParams()
+
+    useEffect(async () => {
+        setTasks(await getCompletedTasks(params.id))
     }, [])
 
     return (
@@ -26,8 +29,8 @@ export const CompletedTasks = ({id}) => {
                         </p>
                     </Grid>
                     <Grid item sm={4} xs={12}>
-                        <Button variant="contained" onClick={() => {
-                            generateButtonHandler(tasks)
+                        <Button variant="contained" onClick={async () => {
+                            await generateButtonHandler(tasks)
                         }}>Сформировать дневник</Button>
                     </Grid>
                 </Grid>

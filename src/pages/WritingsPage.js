@@ -12,8 +12,8 @@ export const WritingsPage = () => {
 
     let navigate = useNavigate();
 
-    useEffect(() => {
-        setWritings(getWritings(1))
+    useEffect(async () => {
+        setWritings(await getWritings())
     }, [])
 
 

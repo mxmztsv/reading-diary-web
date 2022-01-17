@@ -4,15 +4,17 @@ import {useRoutes} from "./routes";
 import {useAuth} from "./hooks/auth.hook";
 import {AuthContext} from "./context/AuthContext";
 import NavBar from "./components/NavBar";
+import {getUserInfo} from "./controllers/AuthController";
 
 function App() {
-    const {token, login, logout, userId, ready} = useAuth()
-    // const isAuthenticated = !!token
-    const isAuthenticated = true
+    // const {token, login, logout, userId, ready} = useAuth()
+    const userInfo = getUserInfo()
+    const isAuthenticated = userInfo.id
+    // const isAuthenticated = false
     const routes = useRoutes(isAuthenticated)
     return (
         <AuthContext.Provider value={{
-            token, login, logout, userId, isAuthenticated
+            userId: userInfo.id, name: userInfo.name, surname: userInfo.surname, middleName: userInfo.middleName, isAuthenticated
         }}>
             <Router>
                 { isAuthenticated && <NavBar/>}

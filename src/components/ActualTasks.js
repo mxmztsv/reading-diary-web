@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {TasksTable} from "./TasksTable";
 import {getActualTasks} from "../controllers/ActualTasksController";
 import Button from "@mui/material/Button";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 export const ActualTasks = ( { id } ) => {
 
@@ -10,9 +10,10 @@ export const ActualTasks = ( { id } ) => {
 
     let navigate = useNavigate();
 
+    const params = useParams()
 
-    useEffect(() => {
-        setTasks(getActualTasks(id))
+    useEffect(async () => {
+        setTasks(await getActualTasks(params.id))
     }, [])
 
     return (

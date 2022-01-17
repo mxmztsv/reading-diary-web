@@ -11,8 +11,8 @@ export const ChildrenPage = () => {
 
     const [children, setChildren] = useState([])
 
-    useEffect(() => {
-        setChildren(getChildren())
+    useEffect(async () => {
+        setChildren(await getChildren())
     }, [])
 
     let navigate = useNavigate();
@@ -24,7 +24,7 @@ export const ChildrenPage = () => {
             { children.map(child => <ChildItem
                 name={child.name}
                 surname={child.surname}
-                midname={child.midname}
+                midname={child.middleName}
                 id={child.id}
                 onClick={() => {
                     navigate(`/child/${child.id}`)

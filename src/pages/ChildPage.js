@@ -8,7 +8,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
-import {getChildById} from "../controllers/ChildPageController";
+import {disconnectChild, getChildById} from "../controllers/ChildPageController";
 import {TasksTable} from "../components/TasksTable";
 import {ActualTasks} from "../components/ActualTasks";
 import {CompletedTasks} from "../components/CompletedTasks";
@@ -21,7 +21,7 @@ export const ChildPage = () => {
     const [child, setChild] = useState({
         name: '',
         surname: '',
-        midname: '',
+        middleName: '',
         id: ''
     })
     const [tab, setTab] = React.useState('1');
@@ -30,8 +30,8 @@ export const ChildPage = () => {
         setTab(newValue);
     };
 
-    useEffect(() => {
-        setChild(getChildById(params.id))
+    useEffect(async () => {
+        setChild(await getChildById(params.id))
     }, [])
 
 
@@ -42,13 +42,13 @@ export const ChildPage = () => {
                 <div className="name-column">
                     <div className="name-wrapper">
                         <span className='child-item_name'>{child.name}</span>
-                        <span className='child-item_name'>{child.midname}</span>
+                        <span className='child-item_name'>{child.middleName}</span>
                         <span className='child-item_name'>{child.surname}</span>
                     </div>
                     <span className='child-item_id'>{params.id}</span>
                 </div>
-                <Button variant="outlined" onClick={() => {
-
+                <Button variant="outlined" onClick={async () => {
+                    await disconnectChild(child.id)
                 }}>Отключить от себя</Button>
             </div>
             <TabContext value={tab}>

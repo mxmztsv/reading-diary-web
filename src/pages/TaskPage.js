@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {getTaskDetails} from "../controllers/TaskPageController";
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -17,16 +17,18 @@ export const TaskPage = () => {
     const [statistics, setStatistics] = useState([])
 
     let params = useParams();
+    const navigate = useNavigate()
 
-    useEffect(() => {
-        const details = getTaskDetails(params.id)
+
+    useEffect(async () => {
+        const details = await getTaskDetails(params.id)
         setTask({
             id: details.id,
-            title: details.title,
+            title: details.name,
             author: details.author,
             deadline: details.deadline
         })
-        setStatistics(details.statistics)
+        setStatistics(details.sessions)
     }, [])
 
 
@@ -42,11 +44,11 @@ export const TaskPage = () => {
                         {task.author}
                     </p>
                     <p className="task-deadline">
-                        {task.deadline}
+                        Дедлайн: {task.deadline}
                     </p>
                 </div>
-                <Button variant="contained">Удалить</Button>
-                {/*<Button variant="contained">Редактировать</Button>*/}
+
+                <Button variant="outlined" onClick={() => navigate(`/child/${params.childId}/edit-task/${params.id}`)}>Редактировать</Button>
             </div>
                 <div className="statistics-wrapper">
                     <h2>Статистика чтения</h2>

@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {NavLink} from "react-router-dom";
+import {signOut} from "../controllers/AuthController";
 
 const pages = ['Мои дети', 'Произведения', 'Авторы'];
 const settings = ['Профиль', 'Выйти'];
@@ -49,7 +50,7 @@ const NavBar = () => {
                             };
                         }}
                                      to="/authors">Авторы</NavLink></li>
-                        <li><NavLink style={({ isActive }) => {
+                        <li><NavLink onClick={signOut} style={({ isActive }) => {
                             return {
                                 display: "block",
                                 margin: "1rem 0",

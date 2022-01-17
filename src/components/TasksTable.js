@@ -21,6 +21,7 @@ export const TasksTable = ({ tasks }) => {
                 <th>Название</th>
                 <th>Автор</th>
                 <th>Дедлайн</th>
+                <th>Действие</th>
             </tr>
             </thead>
 
@@ -31,10 +32,10 @@ export const TasksTable = ({ tasks }) => {
                         navigate(`${window.location.pathname}/task/${task.id}`)
                     }}>
                         <td>{index + 1}</td>
-                        <td>{task.title}</td>
+                        <td>{task.name}</td>
                         <td>{task.author}</td>
-                        {/*<td>{task.deadline}</td>*/}
-                        <td>deadline</td>
+                        <td>{task.deadline}</td>
+                        <td><a href={`${window.location.pathname}/edit-task/${task.id}`}>Изменить</a></td>
                     </tr>
                 )
             }) }

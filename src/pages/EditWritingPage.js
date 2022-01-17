@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
 import Container from "@mui/material/Container";
 import {useParams} from "react-router-dom";
-import {getAuthorsList, getWriting} from "../controllers/EditWritingController";
+import {deleteWritingById, getAuthorsList, getWriting, saveWriting} from "../controllers/EditWritingController";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
-import {submitHandler} from "../controllers/EditTaskController";
+import {deleteTaskById, submitHandler} from "../controllers/EditTaskController";
 
 
 export const EditWritingPage = () => {
@@ -21,14 +21,15 @@ export const EditWritingPage = () => {
 
     const params = useParams()
 
-    useEffect(() => {
+    useEffect(async () => {
         if (params.id !== undefined) {
             setId(params.id)
-            const writing = getWriting(id)
+            const writing = await getWriting(params.id)
             setName(writing.name)
             setAuthorId(writing.author.id)
+            setSelectedAuthor(writing.author.id)
         }
-        setAuthorsList(getAuthorsList())
+        setAuthorsList(await getAuthorsList())
     }, [])
 
     return (
@@ -59,7 +60,10 @@ export const EditWritingPage = () => {
                 <p className="description">
                     Либо <a href='/authors'>добавить в список выбора нового автора</a>, если его еще нет
                 </p>
-                <Button variant="contained" >сохранить</Button>
+                <Button variant="contained" onClick={async () => await saveWriting(id, selectedAuthor, name)}>сохранить</Button>
+                {params.id !== undefined ? (
+                    <Button variant="outlined" onClick={async () => await deleteWritingById(id)}>Удалить</Button>
+                ) : (<></>)}
             </Container>
         </div>
     )

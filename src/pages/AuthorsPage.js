@@ -12,8 +12,8 @@ export const AuthorsPage = () => {
 
     let navigate = useNavigate();
 
-    useEffect(() => {
-        setAuthors(getAuthorsList())
+    useEffect(async () => {
+        setAuthors(await getAuthorsList())
     }, [])
 
     return (

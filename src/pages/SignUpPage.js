@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import {signUp} from "../controllers/AuthController";
 
 
 export const SignUpPage = () => {
@@ -64,7 +65,8 @@ export const SignUpPage = () => {
 
                     </div>
                     <Stack direction="row" spacing={2}>
-                        <Button variant="contained">Зарегистрироваться</Button>
+                        <Button variant="contained"
+                                onClick={() => signUp(form.login, form.pass, form.name, form.surname, form.midname, form.email)}>Зарегистрироваться</Button>
                     </Stack>
                 </CardContent>
             </Card>

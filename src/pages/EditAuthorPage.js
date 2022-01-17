@@ -7,24 +7,25 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
-import {getAuthorById, saveAuthor} from "../controllers/EditAuthorController";
+import {deleteAuthorById, getAuthorById, saveAuthor} from "../controllers/EditAuthorController";
+import {deleteWritingById} from "../controllers/EditWritingController";
 
 
 export const EditAuthorPage = () => {
 
-    const [surname, setSurame] = useState('')
+    const [surname, setSurname] = useState('')
     const [name, setName] = useState('')
     const [middleName, setMiddleName] = useState('')
     const [id, setId] = useState(null)
 
     const params = useParams()
 
-    useEffect(() => {
+    useEffect(async () => {
         if (params.id !== undefined) {
             setId(params.id)
-            const author = getAuthorById(id)
+            const author = await getAuthorById(params.id)
             setName(author.name)
-            setSurame(author.surname)
+            setSurname(author.surname)
             setMiddleName(author.middleName)
         }
     }, [])
@@ -36,7 +37,7 @@ export const EditAuthorPage = () => {
 
                 <div className="input-field">
                     <TextField label="Введите фамилию" fullWidth variant="outlined" placeholder="Фамилия"
-                               type="text" name="surname" value={surname} onChange={(e) => {setSurame(e.target.value)}}/>
+                               type="text" name="surname" value={surname} onChange={(e) => {setSurname(e.target.value)}}/>
                 </div>
 
                 <div className="input-field">
@@ -49,7 +50,10 @@ export const EditAuthorPage = () => {
                                type="text" name="midname" value={middleName} onChange={(e) => {setMiddleName(e.target.value)}}/>
                 </div>
 
-                <Button variant="contained" onClick={() => {saveAuthor(id, name, surname, middleName)}}>сохранить</Button>
+                <Button variant="contained" onClick={async () => {await saveAuthor(id, name, surname, middleName)}}>сохранить</Button>
+                {params.id !== undefined ? (
+                    <Button variant="outlined" onClick={async () => {await deleteAuthorById(id)}}>Удалить</Button>
+                ) : (<></>)}
             </Container>
         </div>
     )
