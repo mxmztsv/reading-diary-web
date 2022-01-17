@@ -1,4 +1,7 @@
 export const getWritings = (id) => {
+
+    console.log('getting writings...')
+
   // request
     const writings = [
         {
@@ -34,4 +37,9 @@ export const getWritings = (id) => {
     ]
 
     return writings
+}
+
+export const submitHandler = (writingId, deadline) => {
+    // request
+    console.log('Добавление задания: ', writingId + ' ' + deadline)
 }

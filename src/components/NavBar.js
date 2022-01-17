@@ -40,7 +40,7 @@ const NavBar = () => {
                                 color: isActive ? "white" : "white"
                             };
                         }}
-                                     to="/">Литература</NavLink></li>
+                                     to="/writings">Литература</NavLink></li>
                         <li><NavLink style={({ isActive }) => {
                             return {
                                 display: "block",
