@@ -8,6 +8,8 @@ import {TaskPage} from "./pages/TaskPage";
 import {EditTaskPage} from "./pages/EditTaskPage";
 import {WritingsPage} from "./pages/WritingsPage";
 import {EditWritingPage} from "./pages/EditWritingPage";
+import {AuthorsPage} from "./pages/AuthorsPage";
+import {EditAuthorPage} from "./pages/EditAuthorPage";
 
 export const useRoutes = isAuthenticated => {
     if (isAuthenticated) {
@@ -15,8 +17,12 @@ export const useRoutes = isAuthenticated => {
             <Routes>
                 <Route path="/" element={<ChildrenPage/>}/>
                 <Route path="writings" element={<WritingsPage/>}/>
+                <Route path="authors" element={<AuthorsPage/>}/>
                 <Route path="edit-writing" element={<EditWritingPage/>}>
                     <Route path=":id" element={<EditWritingPage/>}/>
+                </Route>
+                <Route path="edit-author" element={<EditAuthorPage/>}>
+                    <Route path=":id" element={<EditAuthorPage/>}/>
                 </Route>
                 <Route path="child" element={<ChildPage/>}>
                     <Route path=":id" element={<ChildPage/>}/>

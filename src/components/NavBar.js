@@ -48,7 +48,7 @@ const NavBar = () => {
                                 color: isActive ? "white" : "white"
                             };
                         }}
-                                     to="/">Авторы</NavLink></li>
+                                     to="/authors">Авторы</NavLink></li>
                         <li><NavLink style={({ isActive }) => {
                             return {
                                 display: "block",

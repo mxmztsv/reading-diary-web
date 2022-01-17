@@ -24,7 +24,7 @@ export const WritingsTable = ({ writings }) => {
                     <tr key={writing.id}>
                         <td>{index + 1}</td>
                         <td>{writing.name}</td>
-                        <td>{writing.author.name}</td>
+                        <td>{writing.author.surname} {writing.author.name} {writing.author.middleName}</td>
                         <td><a href={`edit-writing/${writing.id}`}>Изменить</a></td>
                     </tr>
                 )
