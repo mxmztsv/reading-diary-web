@@ -7,12 +7,15 @@ import {useParams} from "react-router-dom";
 
 export const CompletedTasks = ({id}) => {
 
-    const [tasks, setTasks] = useState([])
-
     const params = useParams()
+
+    const [tasks, setTasks] = useState([])
+    const [childId, setChildId] = useState(params.id)
+
 
     useEffect(async () => {
         setTasks(await getCompletedTasks(params.id))
+        setChildId(params.id)
     }, [])
 
     return (
@@ -30,7 +33,7 @@ export const CompletedTasks = ({id}) => {
                     </Grid>
                     <Grid item sm={4} xs={12}>
                         <Button variant="contained" onClick={async () => {
-                            await generateButtonHandler(tasks)
+                            await generateButtonHandler(tasks, id)
                         }}>Сформировать дневник</Button>
                     </Grid>
                 </Grid>

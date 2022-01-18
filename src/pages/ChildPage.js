@@ -12,6 +12,7 @@ import {disconnectChild, getChildById} from "../controllers/ChildPageController"
 import {TasksTable} from "../components/TasksTable";
 import {ActualTasks} from "../components/ActualTasks";
 import {CompletedTasks} from "../components/CompletedTasks";
+import {Diaries} from "../components/Diaries";
 
 
 export const ChildPage = () => {
@@ -63,7 +64,9 @@ export const ChildPage = () => {
                 <TabPanel value="2">
                     <CompletedTasks id={child.id}/>
                 </TabPanel>
-                <TabPanel value="3">Item Three</TabPanel>
+                <TabPanel value="3">
+                    <Diaries id={child.id}/>
+                </TabPanel>
             </TabContext>
             </Container>
         </div>

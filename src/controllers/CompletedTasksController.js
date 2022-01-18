@@ -1,4 +1,6 @@
 import {request} from "./HttpController";
+import {getUserInfo} from "./AuthController";
+import {BASE_URL} from "../config/api";
 
 export const getCompletedTasks = async (id) => {
     // request
@@ -40,16 +42,29 @@ export const getSelectedTasks = (tasksList) => {
     return tasksList.filter(task => task.selected === true)
 }
 
-export const generateDiary = async (selectedTasksList) => {
+export const generateDiary = async (selectedTasksList, studentId) => {
     if (selectedTasksList.length) {
-        console.log('Selected tasks is: ', selectedTasksList)
-        console.log('Sending a request to a diary generator...')
+        console.log('Sending a request to a diary generator... ', studentId)
+        const name = `новый_дневник_${new Date()}`
+
+        const readingTasksId = selectedTasksList.map(item => {
+            return item.id
+        })
+        console.log('Selected tasks is: ', readingTasksId)
         // request
+        // const response = await request('/main/generate-diary', {studentId, name, readingTasksId})
+        const body = JSON.stringify({studentId, name, readingTasksId})
+        const headers = {}
+        headers['Content-Type'] = 'application/json'
+        const method = 'POST'
+        const response = await fetch(BASE_URL + '/main/generate-diary', { method, body, headers })
+        // const response = await fetch(BASE_URL + '/main/diary', { method, headers })
+        console.log('response', response)
     }
 }
 
-export const generateButtonHandler = async (tasksList) => {
-    await generateDiary(getSelectedTasks(tasksList))
+export const generateButtonHandler = async (tasksList, id) => {
+    await generateDiary(getSelectedTasks(tasksList), id)
 }
 
 // export const selectTask = (item) => {
