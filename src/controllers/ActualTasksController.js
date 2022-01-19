@@ -1,5 +1,7 @@
 import {request} from "./HttpController";
 
+// todo: редирект после действий
+
 export const getActualTasks = async (id) => {
     // request
 

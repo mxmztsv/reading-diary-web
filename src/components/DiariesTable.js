@@ -28,7 +28,7 @@ export const DiariesTable = ({ diaries }) => {
             { diaries.map((diary, index) => {
                 return (
                     <tr key={diary.id} onClick={async () => {
-                        await getDiaryById(diary.id)
+                        await getDiaryById(diary.id, diary.name)
                     }}>
                         <td>{index + 1}</td>
                         <td>{diary.name}</td>
