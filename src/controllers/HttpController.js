@@ -13,10 +13,16 @@ export const request = async (url, body = null, method = 'POST', headers = {
         // const proxyurl = "https://rh-cors.herokuapp.com/"
 
         const response = await fetch(BASE_URL + url, { method, body, headers })
-        const data = await response.json()
+        let data
+        try {
+            data = await response.json()
+        } catch (e) {
+
+        }
+
 
         if (!response.ok) {
-            throw new Error(data.message || 'Something went wrong during http request')
+            throw new Error(data.message || 'ERR CODE ' + response.status + '. ' + 'Something went wrong during http request')
         }
 
         return data

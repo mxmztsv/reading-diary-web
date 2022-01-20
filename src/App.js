@@ -5,6 +5,7 @@ import {useAuth} from "./hooks/auth.hook";
 import {AuthContext} from "./context/AuthContext";
 import NavBar from "./components/NavBar";
 import {getUserInfo} from "./controllers/AuthController";
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
     // const {token, login, logout, userId, ready} = useAuth()
@@ -22,6 +23,7 @@ function App() {
                     {routes}
                 </div>
             </Router>
+            <Toaster />
         </AuthContext.Provider>
     )
 }

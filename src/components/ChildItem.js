@@ -7,7 +7,7 @@ export const ChildItem = ({ name, surname, midname, id, onClick }) => {
             <span className='child-item_name'>{name}</span>
             <span className='child-item_name'>{midname}</span>
             <span className='child-item_name'>{surname}</span>
-            <span className='child-item_id'>{id}</span>
+            <span className='child-item_id'>{'ID#' + id}</span>
         </div>
     )
 }

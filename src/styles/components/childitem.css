@@ -6,13 +6,13 @@
     align-items: center;
     text-align: center;
     justify-content: flex-start;
-    border-bottom-color: #acacac;
+    border-bottom-color: #e0e0e0;
     border-bottom-width: 1px;
     border-bottom-style: solid;
 }
 
 .child-item:hover {
-    background: lightgray;
+    background: #E3F2FD;
 }
 
 .child-item_name {

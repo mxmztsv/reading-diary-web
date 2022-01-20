@@ -8,7 +8,7 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
-import {deleteTaskById, submitHandler} from "../controllers/EditTaskController";
+import Stack from "@mui/material/Stack";
 
 
 export const EditWritingPage = () => {
@@ -38,7 +38,9 @@ export const EditWritingPage = () => {
                 <h1>Сохранить произведение</h1>
                 <div className="input-field">
                     <TextField label="Введите название" fullWidth variant="outlined" placeholder="Название"
-                               type="text" name="title" value={name} onChange={(e) => {setName(e.target.value)}}/>
+                               type="text" name="title" value={name} onChange={(e) => {
+                        setName(e.target.value)
+                    }}/>
                 </div>
                 <p className="description">
                     Выбрать автора из своего списка:
@@ -60,10 +62,16 @@ export const EditWritingPage = () => {
                 <p className="description">
                     Либо <a href='/authors'>добавить в список выбора нового автора</a>, если его еще нет
                 </p>
-                <Button variant="contained" onClick={async () => await saveWriting(id, selectedAuthor, name)}>сохранить</Button>
-                {params.id !== undefined ? (
-                    <Button variant="outlined" onClick={async () => await deleteWritingById(id)}>Удалить</Button>
-                ) : (<></>)}
+                <div className="row">
+                    <Stack direction="row" spacing={2}>
+                        <Button variant="contained"
+                                onClick={async () => await saveWriting(id, selectedAuthor, name)}>сохранить</Button>
+                        {params.id !== undefined ? (
+                            <Button variant="outlined"
+                                    onClick={async () => await deleteWritingById(id)}>Удалить</Button>
+                        ) : (<></>)}
+                    </Stack>
+                </div>
             </Container>
         </div>
     )

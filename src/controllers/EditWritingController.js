@@ -1,5 +1,6 @@
 import {request} from "./HttpController";
 import {getUserInfo} from "./AuthController";
+import toast from "react-hot-toast";
 
 export const getWriting = async (id) => {
   // request
@@ -50,8 +51,12 @@ export const getAuthorsList = async () => {
 }
 
 export const saveWriting = async (id=null, authorId, name) => {
-    await request('/parent/save-writing', {id, parentId: getUserInfo().id, authorId, name}, 'POST')
-    window.location.href = '/writings'
+    try {
+        await request('/parent/save-writing', {id, parentId: getUserInfo().id, authorId, name}, 'POST')
+        window.location.href = '/writings'
+    } catch (e) {
+        toast(e.message);
+    }
 }
 
 export const deleteWritingById = async (id) => {

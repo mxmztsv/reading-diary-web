@@ -41,12 +41,13 @@ export const ChildPage = () => {
             <Container>
             <div className="profile-header">
                 <div className="name-column">
-                    <div className="name-wrapper">
+                    <h1 className="name-wrapper">
                         <span className='child-item_name'>{child.name}</span>
                         <span className='child-item_name'>{child.middleName}</span>
                         <span className='child-item_name'>{child.surname}</span>
-                    </div>
-                    <span className='child-item_id'>{params.id}</span>
+                        <span className='child-item_id'>{'ID#' + params.id}</span>
+
+                    </h1>
                 </div>
                 <Button variant="outlined" onClick={async () => {
                     await disconnectChild(child.id)

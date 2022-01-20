@@ -4,6 +4,9 @@ import {ChildItem} from "../components/ChildItem";
 import { useParams, useNavigate } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import {getUserInfo} from "../controllers/AuthController";
+import {Divider} from "@mui/material";
+import toast from "react-hot-toast";
 
 
 
@@ -20,16 +23,18 @@ export const ChildrenPage = () => {
     return (
         <div className="children-page">
             <Container>
-            <h1>Список детей</h1>
-            { children.map(child => <ChildItem
-                name={child.name}
-                surname={child.surname}
-                midname={child.middleName}
-                id={child.id}
-                onClick={() => {
-                    navigate(`/child/${child.id}`)
-                }}
-            />) }
+                <h1>{getUserInfo().name + ' ' + getUserInfo().middleName + ' ' + getUserInfo().surname + ' ID#' + getUserInfo().id}</h1>
+                <Divider />
+                <h2>Список детей</h2>
+                {children.map(child => <ChildItem
+                    name={child.name}
+                    surname={child.surname}
+                    midname={child.middleName}
+                    id={child.id}
+                    onClick={() => {
+                        navigate(`/child/${child.id}`)
+                    }}
+                />)}
             </Container>
         </div>
     )

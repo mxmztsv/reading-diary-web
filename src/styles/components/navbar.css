@@ -6,7 +6,7 @@
     height: 80px;
     justify-content: space-between;
     background: #1976d2;
-    color: white;
+    color: #ffffff;
     padding: 0 0px;
     align-items: center;
     text-align: center;
@@ -26,7 +26,7 @@
     display: inline-block;
     text-decoration: none;
     padding: 0 22px;
-    color: white;
+    /*color: #cb4242;*/
     height: 100%;
     align-items: center;
     text-align: center;
@@ -38,10 +38,19 @@
     align-items: center;
     text-align: center;
     align-content: center;
+    /*color: #cb4242;*/
+
 }
 
 .navbar li:hover {
-    background: #acacac;
+    /*background: #E3F2FD;*/
+    /*color: #801d1d;*/
+    border-right-width: 1px;
+    border-right-color: #E3F2FD;
+    border-right-style: solid;
+    border-left-width: 1px;
+    border-left-color: #E3F2FD;
+    border-left-style: solid;
 }
 
 .brand-logo {

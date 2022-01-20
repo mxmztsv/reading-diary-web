@@ -29,7 +29,6 @@ const NavBar = () => {
                         <li><NavLink style={({ isActive }) => {
                             return {
                                 display: "block",
-                                margin: "1rem 0",
                                 color: isActive ? "white" : "white"
                             };
                         }}
@@ -37,7 +36,6 @@ const NavBar = () => {
                         <li><NavLink style={({ isActive }) => {
                             return {
                                 display: "block",
-                                margin: "1rem 0",
                                 color: isActive ? "white" : "white"
                             };
                         }}
@@ -45,7 +43,6 @@ const NavBar = () => {
                         <li><NavLink style={({ isActive }) => {
                             return {
                                 display: "block",
-                                margin: "1rem 0",
                                 color: isActive ? "white" : "white"
                             };
                         }}
@@ -53,7 +50,6 @@ const NavBar = () => {
                         <li><NavLink onClick={signOut} style={({ isActive }) => {
                             return {
                                 display: "block",
-                                margin: "1rem 0",
                                 color: isActive ? "white" : "white"
                             };
                         }}

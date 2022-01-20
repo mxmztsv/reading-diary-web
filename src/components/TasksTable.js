@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
+import {stringToDate} from "../services/DateService";
 
 export const TasksTable = ({ tasks }) => {
 
@@ -34,7 +35,7 @@ export const TasksTable = ({ tasks }) => {
                         <td>{index + 1}</td>
                         <td>{task.name}</td>
                         <td>{task.author}</td>
-                        <td>{task.deadline}</td>
+                        <td>{stringToDate(task.deadline)}</td>
                         <td><a href={`${window.location.pathname}/edit-task/${task.id}`}>Изменить</a></td>
                     </tr>
                 )

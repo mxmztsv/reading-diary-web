@@ -2,6 +2,7 @@ import {request} from "./HttpController";
 import {BASE_URL} from "../config/api";
 import { saveAs } from 'file-saver';
 import axios from "axios";
+import toast from "react-hot-toast";
 
 
 export const getDiariesByStudentId = async (id) => {
@@ -38,7 +39,10 @@ export const getDiaryById = async (id, title) => {
             document.body.appendChild(link);
             link.click();
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            toast.error(error.message)
+            console.log(error)
+        });
 
 
 

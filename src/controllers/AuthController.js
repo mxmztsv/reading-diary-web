@@ -1,38 +1,51 @@
 import React, {useContext, useEffect, useState} from "react";
 import {request} from "./HttpController";
+import toast from "react-hot-toast";
 
 const storageName = 'userData'
 
 export const signUp = async (login, password, name, surname, middleName, email) => {
-    const response = await request('/account/sign-up', {login, password, name, surname, middleName, email, roleName: "parent"}, 'POST')
-    // const response = {
-    //     "id": 14,
-    //     "name": "Олег",
-    //     "surname": "Зайцев",
-    //     "middleName": "Олегович",
-    //     "email": "6@gmail.com",
-    //     "role": "parent"
-    // }
+    let response
+    try {
+        response = await request('/account/sign-up', {login, password, name, surname, middleName, email, roleName: "parent"}, 'POST')
+        // const response = {
+        //     "id": 14,
+        //     "name": "Олег",
+        //     "surname": "Зайцев",
+        //     "middleName": "Олегович",
+        //     "email": "6@gmail.com",
+        //     "role": "parent"
+        // }
 
-    localStorage.setItem(storageName, JSON.stringify({...response}))
-    window.location.href = '/'
+        localStorage.setItem(storageName, JSON.stringify({...response}))
+        window.location.href = '/'
+    } catch (e) {
+        toast.error(e.message);
+    }
+
     return response
 }
 
 export const signIn = async (login, password) => {
-    const response = await request('/account/sign-in', {login, password})
-    console.log('response', response)
+    let response
+    try {
+        response = await request('/account/sign-in', {login, password})
+        // console.log('response', response)
 
-    // const response = {
-    //     "id": 14,
-    //     "name": "Олег",
-    //     "surname": "Зайцев",
-    //     "middleName": "Олегович",
-    //     "email": "6@gmail.com",
-    //     "role": "parent"
-    // }
-    localStorage.setItem(storageName, JSON.stringify({...response}))
-    window.location.href = '/'
+        // const response = {
+        //     "id": 14,
+        //     "name": "Олег",
+        //     "surname": "Зайцев",
+        //     "middleName": "Олегович",
+        //     "email": "6@gmail.com",
+        //     "role": "parent"
+        // }
+        localStorage.setItem(storageName, JSON.stringify({...response}))
+        window.location.href = '/'
+    } catch (e) {
+        toast.error(e.message)
+    }
+
 
     return response
 }
@@ -41,10 +54,14 @@ export const signOut = () => {
     //request
 
     console.log('Выход')
-    localStorage.removeItem(storageName)
     window.location.href = '/'
+    try {
+        localStorage.removeItem(storageName)
+    }catch (e) {
+        console.log(e.message)
+    }
 
-    getUserInfo()
+    // getUserInfo()
 
 }
 

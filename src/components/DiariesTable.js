@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import {getDiaryById} from "../controllers/DiariesController";
+import {stringToDate, stringToDateWithTime} from "../services/DateService";
 
 export const DiariesTable = ({ diaries }) => {
 
@@ -32,7 +33,7 @@ export const DiariesTable = ({ diaries }) => {
                     }}>
                         <td>{index + 1}</td>
                         <td>{diary.name}</td>
-                        <td>{diary.creationDate}</td>
+                        <td>{stringToDateWithTime(diary.creationDate)}</td>
                     </tr>
                 )
             }) }

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import Checkbox from '@mui/material/Checkbox';
+import {stringToDate} from "../services/DateService";
 
 
 export const CompletedTasksTable = ({ tasks }) => {
@@ -36,7 +37,7 @@ export const CompletedTasksTable = ({ tasks }) => {
                         <td>{index + 1}</td>
                         <td>{task.name}</td>
                         <td>{task.author}</td>
-                        <td>{task.deadline}</td>
+                        <td>{stringToDate(task.deadline)}</td>
                         <td>
                             <Checkbox onChange={() => {
                                 task.selected = !task.selected

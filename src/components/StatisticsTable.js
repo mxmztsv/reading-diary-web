@@ -25,8 +25,8 @@ export const StatisticsTable = ({ statistics }) => {
                     <tr key={statistic.id} >
                         <td>{index + 1}</td>
                         <td>{statistic.date}</td>
-                        <td>{statistic.startTime}</td>
-                        <td>{statistic.endTime}</td>
+                        <td>{statistic.readingStart}</td>
+                        <td>{statistic.readingEnd}</td>
                         <td>{statistic.duration}</td>
                     </tr>
                 )

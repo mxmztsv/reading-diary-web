@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import {StatisticsTable} from "../components/StatisticsTable";
 import Button from "@mui/material/Button";
+import {stringToDate} from "../services/DateService";
 
 export const TaskPage = () => {
 
@@ -44,7 +45,7 @@ export const TaskPage = () => {
                         {task.author}
                     </p>
                     <p className="task-deadline">
-                        Дедлайн: {task.deadline}
+                        Дедлайн: {stringToDate(task.deadline)}
                     </p>
                 </div>
 

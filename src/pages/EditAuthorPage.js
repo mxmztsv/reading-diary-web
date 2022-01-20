@@ -2,13 +2,9 @@ import React, {useEffect, useState} from "react";
 import Container from "@mui/material/Container";
 import {useParams} from "react-router-dom";
 import TextField from "@mui/material/TextField";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import {deleteAuthorById, getAuthorById, saveAuthor} from "../controllers/EditAuthorController";
-import {deleteWritingById} from "../controllers/EditWritingController";
+import Stack from "@mui/material/Stack";
 
 
 export const EditAuthorPage = () => {
@@ -37,23 +33,37 @@ export const EditAuthorPage = () => {
 
                 <div className="input-field">
                     <TextField label="Введите фамилию" fullWidth variant="outlined" placeholder="Фамилия"
-                               type="text" name="surname" value={surname} onChange={(e) => {setSurname(e.target.value)}}/>
+                               type="text" name="surname" value={surname} onChange={(e) => {
+                        setSurname(e.target.value)
+                    }}/>
                 </div>
 
                 <div className="input-field">
                     <TextField label="Введите имя" fullWidth variant="outlined" placeholder="Имя"
-                               type="text" name="name" value={name} onChange={(e) => {setName(e.target.value)}}/>
+                               type="text" name="name" value={name} onChange={(e) => {
+                        setName(e.target.value)
+                    }}/>
                 </div>
 
                 <div className="input-field">
                     <TextField label="Введите отчество" fullWidth variant="outlined" placeholder="Отчество"
-                               type="text" name="midname" value={middleName} onChange={(e) => {setMiddleName(e.target.value)}}/>
+                               type="text" name="midname" value={middleName} onChange={(e) => {
+                        setMiddleName(e.target.value)
+                    }}/>
                 </div>
 
-                <Button variant="contained" onClick={async () => {await saveAuthor(id, name, surname, middleName)}}>сохранить</Button>
-                {params.id !== undefined ? (
-                    <Button variant="outlined" onClick={async () => {await deleteAuthorById(id)}}>Удалить</Button>
-                ) : (<></>)}
+                <div className="row">
+                    <Stack direction="row" spacing={2}>
+                        <Button variant="contained" onClick={async () => {
+                            await saveAuthor(id, name, surname, middleName)
+                        }}>сохранить</Button>
+                        {params.id !== undefined ? (
+                            <Button variant="outlined" onClick={async () => {
+                                await deleteAuthorById(id)
+                            }}>Удалить</Button>
+                        ) : (<></>)}
+                    </Stack>
+                </div>
             </Container>
         </div>
     )

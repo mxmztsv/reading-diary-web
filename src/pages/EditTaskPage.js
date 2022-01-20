@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import DatePicker from 'react-datepicker'
 
 import "react-datepicker/dist/react-datepicker.css";
+import Stack from "@mui/material/Stack";
 
 export const EditTaskPage = () => {
 
@@ -55,17 +56,22 @@ export const EditTaskPage = () => {
                     </Select>
                 </FormControl>
                 <p className="description">
-                    Либо <a href='/writings'>добавить в список выбора новое произведение</a>, если его еще нет
+                    Либо <a href='/writings' className='link'>добавить в список выбора новое произведение</a>, если его еще нет
                 </p>
                 <p className="description">
                     Дата, к которой необходимо прочитать произведение:
                 </p>
-                <DatePicker selected={deadline} onChange={(date) => setDeadline(date)} />
 
+                <div className="row">
+                <DatePicker selected={deadline} onChange={(date) => setDeadline(date)} />
+                </div>
+
+                <Stack direction="row" spacing={2}>
                 <Button variant="contained" onClick={async () => { await submitHandler(id, params.childId, selectedWriting, deadline)}}>Сохранить</Button>
                 {params.id !== undefined ? (
                     <Button variant="outlined" onClick={async () => await deleteTaskById(id)}>Удалить</Button>
                 ) : (<></>)}
+                </Stack>
             </Container>
         </div>
     )
